@@ -1,0 +1,24 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/server.js",
+  "scripts": {
+    "dev": "node src/server.js",
+    "start": "node src/server.js"
+  },
+  "type": "module",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@upstash/ratelimit": "^2.0.5",
+    "@upstash/redis": "^1.34.9",
+    "cors": "^2.8.5",
+    "dot": "^1.1.3",
+    "dotenv": "^17.2.1",
+    "env": "^0.0.2",
+    "express": "^4.18.2",
+    "mongoose": "^8.17.0"
+  }
+}
