@@ -6,6 +6,8 @@ import toast from "react-hot-toast";
 import NoteCard from "../Components/NoteCard";
 import NotesNotFound from "../Components/NotesNotFound";
 
+
+
 const HomePage = () => {
   const [isRateLimited, setIsRateLimited] = useState(false);
   const [retrySeconds, setRetrySeconds] = useState(0);
