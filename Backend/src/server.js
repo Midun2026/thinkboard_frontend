@@ -21,16 +21,21 @@ if (process.env.NODE_ENV !== "production") {
     })
   );
 }
-app.use(express.json()); // this middleware will parse JSON bodies: req.body
+
+app.use(express.json()); // parse JSON bodies
 app.use(rateLimiter);
 
-// our simple custom middleware
-// app.use((req, res, next) => {
-//   console.log(`Req method is ${req.method} & Req URL is ${req.url}`);
-//   next();
-// });
-
+// API routes
 app.use("/api/notes", notesRoutes);
+
+// Root route for dev (prevents "Cannot GET /")
+if (process.env.NODE_ENV !== "production") {
+  app.get("/", (req, res) => {
+    res.send("API is running...");
+  });
+}
+
+// In production, serve frontend build
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "../frontend/dist")));
 
@@ -40,6 +45,8 @@ if (process.env.NODE_ENV === "production") {
 }
 
 
+
+// Start server after DB connection
 connectDB().then(() => {
   app.listen(PORT, () => {
     console.log("Server started on PORT:", PORT);
